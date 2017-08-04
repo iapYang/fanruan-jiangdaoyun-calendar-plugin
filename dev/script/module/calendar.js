@@ -15,11 +15,29 @@ export default class {
         // 1 ~ 12
         this.month = this.date.getMonth() + 1;
         this.todayNumber = this.date.getDate();
+
+        this.currentYear = this.year;
+        this.currentMonth = this.month;
+        this.currentDayNumber = this.todayNumber;
     }
-    refresh(year = this.year, month = this.month) {
+    refresh(year = this.currentYear, month = this.currentMonth) {
+        this.currentYear = year;
+        this.currentMonth = month;
+        
         this.clearDom();
 
         this.generateDom(this.generateCalendar(year, month));
+    }
+    prevMonth() {
+        let year, month;
+        if (this.currentMonth === 1) {
+            year = this.currentYear - 1;
+            month = 12;
+        } else {
+            year = this.currentYear;
+            month = this.currentMonth - 1;
+        }
+        this.refresh(year, month);
     }
     getDaysInOneMonth(year, month) {
         const d = new Date(year, month, 0);
