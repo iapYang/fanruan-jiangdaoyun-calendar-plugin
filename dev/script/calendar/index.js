@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import MonthDay from './monthDay';
+import MonthYear from './monthYear';
 
 export default class {
     constructor($aim) {
@@ -10,6 +11,8 @@ export default class {
         this.$dt = this.createDT();
         new MonthDay(this.$dt, this.$input);
 
+        this.$mt = this.createMT();
+        new MonthYear(this.$mt);
         this.$container.css(this.calcPostion());
 
         $('body').append(this.$container);
@@ -62,5 +65,20 @@ export default class {
         this.$container.append($dt);
 
         return $dt;
+    }
+    createMT() {
+        const $MT = $(`
+        <table cellspacing="2px" cellpadding="0" class="mt" style="position: absolute; top: 0px; z-index: 8061; display: table;">
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <td class="btn ok" colspan="4">确定</td>
+                </tr>
+            </tfoot>
+        </table>`);
+
+        this.$container.append($MT);
+
+        return $MT;
     }
 }

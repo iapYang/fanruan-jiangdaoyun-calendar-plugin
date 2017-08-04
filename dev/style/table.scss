@@ -12,6 +12,7 @@
     line-height: 0;
     border: none;
     table {
+        position: relative;
         text-align: center;
         padding: 2px; // width: 34px;
         width: 100%;
@@ -60,6 +61,8 @@
                 background-color: #178cdf;
             }
             &.title,
+            &.month,
+            &.year,
             &.btn {
                 &:not(.selected):hover {
                     background-color: #eee;
@@ -74,6 +77,19 @@
                 height: 1px;
                 border-bottom: solid 1px #e0e0e0;
             }
+        }
+    }
+    .mt {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        background-color: #FAFAFA;
+        tbody td {
+            width: 58px;
+            height: 38px;
         }
     }
 }
