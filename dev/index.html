@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calendar</title>
 </head>
+
 <body>
     <div class="container">
         <input type="text">
@@ -34,7 +36,18 @@
                 </tr>
             </thead>
             <tbody onselectstart="return false"></tbody>
+            <tfoot>
+                <tr>
+                    <td class="split" colspan="7"></td>
+                </tr>
+                <tr>
+                    <td class="btn clear" colspan="2">清空</td>
+                    <td class="btn today" colspan="3">今天</td>
+                    <td class="btn ok" colspan="2">确定</td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </body>
+
 </html>

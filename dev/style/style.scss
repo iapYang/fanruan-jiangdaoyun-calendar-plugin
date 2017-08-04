@@ -54,8 +54,11 @@ table {
         &.oday {
             color: #e0e0e0;
         }
-        &.today {
+        &.day.today {
             color: #178cdf;
+            &.selected {
+                color: white;
+            }
         }
         &.selected {
             padding: 1px;
@@ -70,6 +73,13 @@ table {
                 padding: 1px;
                 border: 1px solid #eee;
             }
+        }
+    }
+    tfoot {
+        .split {
+            border-radius: 0;
+            height: 1px;
+            border-bottom: solid 1px #e0e0e0;
         }
     }
 }
