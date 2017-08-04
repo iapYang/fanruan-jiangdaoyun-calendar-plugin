@@ -15,10 +15,11 @@ export default class {
         // 1 ~ 12
         this.month = this.date.getMonth() + 1;
         this.todayNumber = this.date.getDate();
+    }
+    refresh(year = this.year, month = this.month) {
+        this.clearDom();
 
-        this.calendarArr = this.generateCalendar(this.year, this.month);
-
-        this.generateDom();
+        this.generateDom(this.generateCalendar(year, month));
     }
     getDaysInOneMonth(year, month) {
         const d = new Date(year, month, 0);
@@ -83,14 +84,14 @@ export default class {
 
         return calendarArr;
     }
-    generateDom() {
+    generateDom(calendarArr) {
         for (let i = 0; i < 6; i++) {
             const $tr = $('<tr></tr>');
 
             for (let j = 0; j < 7; j++) {
                 const index = i * 7 + j;
-                const $td = $(`<td>${this.calendarArr[index].dayNumber}</td>`);
-                this.calendarArr[index].className.forEach(name => {
+                const $td = $(`<td>${calendarArr[index].dayNumber}</td>`);
+                calendarArr[index].className.forEach(name => {
                     $td.addClass(name);
                 });
                 $tr.append($td);

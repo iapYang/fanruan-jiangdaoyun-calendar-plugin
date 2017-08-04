@@ -9,5 +9,5 @@ const $table = $('table');
 const calendar = new Calendar($table);
 
 $logo.on('click', () => {
-    console.log(788);
+    calendar.refresh();
 });
