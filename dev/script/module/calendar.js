@@ -18,7 +18,7 @@ export default class {
 
         this.currentYear = this.year;
         this.currentMonth = this.month;
-        this.currentDayNumber = this.todayNumber;
+        this.selectDayNumber = this.todayNumber;
     }
     refresh(year = this.currentYear, month = this.currentMonth) {
         this.currentYear = year;
@@ -27,6 +27,8 @@ export default class {
         this.clearDom();
 
         this.generateDom(this.generateCalendar(year, month));
+
+        this.addEventListener();
     }
     prevMonth() {
         let year, month;
@@ -131,5 +133,13 @@ export default class {
     }
     clearDom() {
         this.$tbody.empty();
+    }
+    addEventListener() {
+        const $tds = this.$table.find('td.day');
+
+        $tds.on('click', e => {
+            $tds.removeClass('selected');
+            $(e.currentTarget).addClass('selected');
+        });
     }
 }
