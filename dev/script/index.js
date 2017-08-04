@@ -7,8 +7,9 @@ const $logo = $('.logo');
 const $table = $('table');
 const $prevm = $('.prevm');
 const $nextm = $('.nextm');
+const $input = $('input');
 
-const calendar = new Calendar($table);
+const calendar = new Calendar($table, $input);
 
 $logo.on('click', () => {
     calendar.refresh();

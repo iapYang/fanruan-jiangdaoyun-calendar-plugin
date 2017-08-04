@@ -3,12 +3,13 @@ import $ from 'jquery';
 const monthName = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];
 
 export default class {
-    constructor($table) {
+    constructor($table, $input) {
         console.log('now it is built.');
 
         this.$table = $table;
         this.$tbody = this.$table.find('tbody');
         this.$title = this.$table.find('.title');
+        this.$input = $input;
 
         this.date = new Date();
         this.year = this.date.getFullYear();
@@ -149,6 +150,15 @@ export default class {
             this.selectedDayNumber = parseInt($td.text(), 10);
             $tds.removeClass('selected');
             $td.addClass('selected');
+
+            this.$input.val(this.getValue());
         });
+    }
+    getValue() {
+        const month = this.currentMonth < 10 ? `0${this.currentMonth}` : this.currentMonth;
+        
+        const dayNumber = this.selectedDayNumber < 10 ? `0${this.selectedDayNumber}` : this.selectedDayNumber;
+
+        return `${this.currentYear}-${month}-${dayNumber}`;
     }
 }
