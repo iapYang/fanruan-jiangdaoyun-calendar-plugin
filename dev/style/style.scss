@@ -20,8 +20,7 @@
 
 table {
     text-align: center;
-    padding: 2px;
-    // width: 34px;
+    padding: 2px; // width: 34px;
     width: 100%;
     max-width: 240px;
     height: 27px;
@@ -50,6 +49,9 @@ table {
         }
         &.weekend {
             color: #d9534f;
+        }
+        &.oday {
+            color: #e0e0e0;
         }
     }
 }

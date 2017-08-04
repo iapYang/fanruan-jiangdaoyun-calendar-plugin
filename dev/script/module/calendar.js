@@ -1,8 +1,11 @@
 import $ from 'jquery';
 
 export default class {
-    constructor() {
+    constructor($table) {
         console.log('now it is built.');
+
+        this.$table = $table;
+        this.$tbody = this.$table.find('tbody');
 
         this.date = new Date();
         this.year = this.date.getFullYear();
@@ -15,8 +18,10 @@ export default class {
 
         this.firstDay = this.getDayInOneMonth(this.year, this.month, 1);
         this.lastDay = this.getDayInOneMonth(this.year, this.month, this.monthDays);
-        
+
         this.calendarArr = this.generateCalendar();
+
+        this.generateDom();
     }
     getDaysInOneMonth(year, month) {
         const d = new Date(year, month, 0);
@@ -70,7 +75,23 @@ export default class {
         }
 
         console.log(calendarArr);
-        
+
         return calendarArr;
+    }
+    generateDom() {
+        for (let i = 0; i < 6; i++) {
+            const $tr = $('<tr></tr>');
+            
+            for (let j = 0; j < 7; j++) {
+                const index = i * 7 + j;
+                const $td = $(`<td>${this.calendarArr[index].dayNumber}</td>`);
+                this.calendarArr[index].className.forEach(name => {
+                    $td.addClass(name);
+                });
+                $tr.append($td);
+            }
+
+            this.$tbody.append($tr);
+        }
     }
 }
