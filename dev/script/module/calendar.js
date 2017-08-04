@@ -39,6 +39,17 @@ export default class {
         }
         this.refresh(year, month);
     }
+    nextMonth() {
+        let year, month;
+        if (this.currentMonth === 12) {
+            year = this.currentYear + 1;
+            month = 1;
+        } else {
+            year = this.currentYear;
+            month = this.currentMonth + 1;
+        }
+        this.refresh(year, month);
+    }
     getDaysInOneMonth(year, month) {
         const d = new Date(year, month, 0);
 
@@ -73,7 +84,7 @@ export default class {
             // get things like Mon.
             const day = this.getDayInOneMonth(year, month, i);
 
-            const className = ['day'];
+            const className = ['day', 'btn'];
 
             if (day === 0 || day === 6) {
                 className.push('weekend');

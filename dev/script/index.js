@@ -17,3 +17,7 @@ $logo.on('click', () => {
 $prevm.on('click', () => {
     calendar.prevMonth();
 });
+
+$nextm.on('click', () => {
+    calendar.nextMonth();
+});

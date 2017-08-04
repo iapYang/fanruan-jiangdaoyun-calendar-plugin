@@ -41,6 +41,7 @@ table {
             font-size: 18px;
             font-weight: bold;
             font-style: normal;
+            user-select: none;
         }
         &.title {
             font-weight: bold;
@@ -52,6 +53,14 @@ table {
         }
         &.oday {
             color: #e0e0e0;
+        }
+        &.title,
+        &.btn {
+            &:hover {
+                background-color: #eee;
+                padding: 1px;
+                border: 1px solid #eee;
+            }
         }
     }
 }
