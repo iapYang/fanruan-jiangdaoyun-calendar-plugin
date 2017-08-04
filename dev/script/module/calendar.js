@@ -18,7 +18,7 @@ export default class {
 
         this.currentYear = this.year;
         this.currentMonth = this.month;
-        this.selectDayNumber = this.todayNumber;
+        this.selectedDayNumber = this.todayNumber;
     }
     refresh(year = this.currentYear, month = this.currentMonth) {
         this.currentYear = year;
@@ -92,8 +92,12 @@ export default class {
                 className.push('weekend');
             }
 
-            if (this.todayNumber === i) {
+            if (this.todayNumber === i && month === this.month) {
                 className.push('today');
+            }
+
+            if (i === this.selectedDayNumber) {
+                className.push('selected');
             }
 
             calendarArr.push({
@@ -111,7 +115,6 @@ export default class {
             });
         }
 
-        console.log(calendarArr);
 
         return calendarArr;
     }
@@ -124,6 +127,10 @@ export default class {
                 const $td = $(`<td>${calendarArr[index].dayNumber}</td>`);
                 calendarArr[index].className.forEach(name => {
                     $td.addClass(name);
+                });
+                $td.data('timestamp', {
+                    year: this.currentYear,
+                    month: this.currentMonth,
                 });
                 $tr.append($td);
             }
@@ -138,8 +145,10 @@ export default class {
         const $tds = this.$table.find('td.day');
 
         $tds.on('click', e => {
+            const $td = $(e.currentTarget);
+            this.selectedDayNumber = parseInt($td.text(), 10);
             $tds.removeClass('selected');
-            $(e.currentTarget).addClass('selected');
+            $td.addClass('selected');
         });
     }
 }

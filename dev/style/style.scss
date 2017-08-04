@@ -54,6 +54,9 @@ table {
         &.oday {
             color: #e0e0e0;
         }
+        &.today {
+            color: #178cdf;
+        }
         &.selected {
             padding: 1px;
             color: white;
