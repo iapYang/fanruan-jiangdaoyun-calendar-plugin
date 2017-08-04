@@ -7,6 +7,8 @@ export default class {
         console.log('now it is built.');
 
         this.$table = $table;
+        this.$prevm = $table.find('.prevm');
+        this.$nextm = $table.find('.nextm');
         this.$tbody = this.$table.find('tbody');
         this.$title = this.$table.find('.title');
         this.$input = $input;
@@ -20,6 +22,9 @@ export default class {
         this.currentYear = this.year;
         this.currentMonth = this.month;
         this.selectedDayNumber = this.todayNumber;
+
+        this.refresh();
+        this.tableEventListener();
     }
     refresh(year = this.currentYear, month = this.currentMonth) {
         this.currentYear = year;
@@ -29,7 +34,7 @@ export default class {
 
         this.generateDom(this.generateCalendar(year, month));
 
-        this.addEventListener();
+        this.tdEventListener();
     }
     prevMonth() {
         let year, month;
@@ -116,7 +121,6 @@ export default class {
             });
         }
 
-
         return calendarArr;
     }
     generateDom(calendarArr) {
@@ -142,7 +146,7 @@ export default class {
     clearDom() {
         this.$tbody.empty();
     }
-    addEventListener() {
+    tdEventListener() {
         const $tds = this.$table.find('td.day');
 
         $tds.on('click', e => {
@@ -152,6 +156,14 @@ export default class {
             $td.addClass('selected');
 
             this.$input.val(this.getValue());
+        });
+    }
+    tableEventListener() {
+        this.$prevm.on('click', () => {
+            this.prevMonth();
+        });
+        this.$nextm.on('click', () => {
+            this.nextMonth();
         });
     }
     getValue() {

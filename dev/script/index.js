@@ -3,11 +3,13 @@ import $ from 'jquery';
 import '../style/style.scss';
 import '../style/table.scss';
 
+import Calendar from './calendar';
+
 const $logo = $('.logo');
-const $table = $('table');
-const $prevm = $('.prevm');
-const $nextm = $('.nextm');
 const $input = $('input');
+const $container = $('.container');
+
+new Calendar($container);
 
 // const calendar = new Calendar($table, $input);
 
