@@ -1,4 +1,5 @@
 .container {
+    display: inline-block;
     input {
         width: 200px;
         font-size: 14px;
@@ -20,9 +21,35 @@
 table {
     text-align: center;
     padding: 2px;
-    width: 34px;
+    // width: 34px;
+    width: 100%;
+    max-width: 240px;
     height: 27px;
     cursor: pointer;
     vertical-align: middle;
     border-radius: 2px;
+    td {
+        text-align: center;
+        padding: 2px;
+        width: 34px;
+        height: 27px;
+        cursor: pointer;
+        vertical-align: middle;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        i {
+            font-size: 18px;
+            font-weight: bold;
+            font-style: normal;
+        }
+        &.title {
+            font-weight: bold;
+            text-align: center;
+            padding: 2px;
+        }
+        &.weekend {
+            color: #d9534f;
+        }
+    }
 }
