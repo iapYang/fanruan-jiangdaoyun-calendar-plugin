@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import MonthDay from './monthDay';
 import MonthYear from './monthYear';
+import MinuteSecond from './minuteSecond';
 
 export default class {
     constructor($aim) {
@@ -16,6 +17,8 @@ export default class {
 
         this.vmMy.setConnetion(this.vmMd);
         this.vmMd.setConnection(this.vmMy);
+
+        new MinuteSecond(this.$dt);
 
         this.$container.css(this.calcPostion());
 
@@ -54,7 +57,19 @@ export default class {
                     <td class="name weekend">六</td>
                 </tr>
             </thead>
-            <tbody onselectstart="return false"></tbody>
+            <tbody onselectstart="return false" class="calendar"></tbody>
+            <tbody class="time">
+                <tr>
+                    <td>时间</td>
+                    <td colspan="2" class="hour"></td>
+                    <td class="minute"></td>
+                    <td colspan="2" class="second"></td>
+                    <td class="controller">
+                        <div><span>&lt;</span></div>
+                        <div><span>&gt;</span></div>
+                    </td>                    
+                </tr>
+            </tbody>
             <tfoot>
                 <tr>
                     <td class="split" colspan="7"></td>

@@ -12,7 +12,7 @@ export default class {
         this.$table = $table;
         this.$prevm = $table.find('.prevm');
         this.$nextm = $table.find('.nextm');
-        this.$tbody = this.$table.find('tbody');
+        this.$tbody = this.$table.find('tbody.calendar');
         this.$title = this.$table.find('.title');
         this.$btnToday = this.$table.find('.btn.today');
         this.$input = $input;
