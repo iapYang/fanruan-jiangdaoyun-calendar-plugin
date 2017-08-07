@@ -87,6 +87,11 @@
         bottom: 0;
         height: 100%;
         background-color: #FAFAFA;
+        transform: translateX(-100%);
+        transition: transform ease 0.3s;
+        &.active {
+            transform: none;
+        }
         tbody td {
             width: 58px;
             height: 38px;

@@ -29,7 +29,7 @@ export default class {
     refresh(year = this.currentYear, month = this.currentMonth) {
         this.currentYear = year;
         this.currentMonth = month;
-        
+
         this.clearDom();
 
         this.generateDom(this.generateCalendar(year, month));
@@ -165,10 +165,14 @@ export default class {
         this.$nextm.on('click', () => {
             this.nextMonth();
         });
+        this.$title.on('click', () => {
+            const $mt = this.$table.parent().find('.mt');
+            $mt.addClass('active');
+        });
     }
     getValue() {
         const month = this.currentMonth < 10 ? `0${this.currentMonth}` : this.currentMonth;
-        
+
         const dayNumber = this.selectedDayNumber < 10 ? `0${this.selectedDayNumber}` : this.selectedDayNumber;
 
         return `${this.currentYear}-${month}-${dayNumber}`;

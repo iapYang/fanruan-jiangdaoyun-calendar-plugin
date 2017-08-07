@@ -16,10 +16,10 @@ export default class {
     }
     generateCalendar() {
         let calendarArr = [];
-        const leftArr = ChineseNumber.map(name => {
+        const leftArr = ChineseNumber.map((name, index) => {
             return {
                 value: `${name}月`,
-                className: ['month'],
+                className: index === this.month - 1 ? ['month', 'selected'] : ['month'],
             };
         });
         const rightArr = [{
@@ -36,9 +36,10 @@ export default class {
         const firstYear = firstThreeNum * 10 + 3;
 
         for (let i = 0; i < 10; i++) {
+            const value = firstYear + i;
             rightArr.push({
-                value: firstYear + i,
-                className: ['year'],
+                value,
+                className: value === this.year ? ['selected', 'year'] : ['year'],
             });
         }
 
