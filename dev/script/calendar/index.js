@@ -61,12 +61,12 @@ export default class {
             <tbody class="time">
                 <tr>
                     <td>时间</td>
-                    <td colspan="2" class="hour"></td>
-                    <td class="minute"></td>
-                    <td colspan="2" class="second"></td>
+                    <td colspan="2" class="hour display"></td>
+                    <td class="minute display"></td>
+                    <td colspan="2" class="second display selected"></td>
                     <td class="controller">
-                        <div><span>&lt;</span></div>
-                        <div><span>&gt;</span></div>
+                        <div class="up-btn"><span>&lt;</span></div>
+                        <div class="down-btn"><span>&gt;</span></div>
                     </td>                    
                 </tr>
             </tbody>
