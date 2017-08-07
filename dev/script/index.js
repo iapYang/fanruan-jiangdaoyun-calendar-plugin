@@ -8,8 +8,12 @@ import Calendar from './calendar';
 const $logo = $('.logo');
 const $input = $('input');
 const $all = $('.all');
+const $monthYear = $('.monthYear');
 
 new Calendar($all);
+new Calendar($monthYear, {
+    type: 0,
+});
 
 // const calendar = new Calendar($table, $input);
 

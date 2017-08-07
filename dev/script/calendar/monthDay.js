@@ -10,6 +10,7 @@ export default class {
         console.log('now it is built.');
 
         this.$table = $table;
+        this.$container = $table.parent();
         this.$prevm = $table.find('.prevm');
         this.$nextm = $table.find('.nextm');
         this.$tbody = this.$table.find('tbody.calendar');
@@ -24,10 +25,6 @@ export default class {
         this.tableEventListener();
     }
     refresh(year = this.currentYear, month = this.currentMonth) {
-        if (this.vm) {
-            this.vm.refresh(year, month);
-        }
-        
         this.currentYear = year;
         this.currentMonth = month;
 
@@ -46,7 +43,8 @@ export default class {
             year = this.currentYear;
             month = this.currentMonth - 1;
         }
-        this.refresh(year, month);
+        // this.refresh(year, month);
+        this.sendData(year, month);
     }
     nextMonth() {
         let year, month;
@@ -57,7 +55,8 @@ export default class {
             year = this.currentYear;
             month = this.currentMonth + 1;
         }
-        this.refresh(year, month);
+        // this.refresh(year, month);
+        this.sendData(year, month);
     }
     getDaysInOneMonth(year, month) {
         const d = new Date(year, month, 0);
@@ -71,11 +70,6 @@ export default class {
     }
     setConnection(vm) {
         this.vm = vm;
-    }
-    setMonthYear(year, month) {
-        if (year === this.currentYear && month === this.currentMonth) return;
-
-        this.refresh(year, month);
     }
     generateCalendar(year, month) {
         const monthDays = this.getDaysInOneMonth(year, month);
@@ -185,13 +179,17 @@ export default class {
             this.currentMonth = this.month;
             this.selectedDayNumber = this.todayNumber;
 
-            this.refresh();
+            // this.refresh();
+            this.sendData();
 
             this.inputValChange();
         });
     }
     inputValChange() {
         this.$input.val(this.getValue());
+    }
+    sendData(year = this.currentYear, month = this.currentMonth) {
+        this.$container.trigger('changeData', [year, month]);
     }
     getValue() {
         const month = this.currentMonth < 10 ? `0${this.currentMonth}` : this.currentMonth;

@@ -4,7 +4,7 @@ import MonthYear from './monthYear';
 import MinuteSecond from './minuteSecond';
 
 export default class {
-    constructor($aim) {
+    constructor($aim, type = 2) {
         this.$aim = $aim;
         this.$input = this.$aim.find('input');
         this.$logo = this.$aim.find('.logo');
@@ -25,13 +25,7 @@ export default class {
 
         $('body').append(this.$container);
 
-        this.$logo.on('click', () => {
-            if (this.$container.hasClass('active')) {
-                this.$container.removeClass('active');
-            } else {
-                this.$container.addClass('active');
-            }
-        });
+        this.addEventListener();
     }
     calcPostion() {
         const top = this.$aim.position().top + this.$aim.height();
@@ -108,5 +102,23 @@ export default class {
         this.$container.append($MT);
 
         return $MT;
+    }
+    addEventListener() {
+        this.$logo.on('click', () => {
+            if (this.$container.hasClass('active')) {
+                this.$container.removeClass('active');
+            } else {
+                this.$container.addClass('active');
+            }
+        });
+
+        this.$container.on('changeData', (e, year, month) => {
+            if (this.vmMd) {
+                this.vmMd.refresh(year, month);
+            }
+            if (this.vmMy) {
+                this.vmMy.refresh(year, month);
+            }
+        });
     }
 }

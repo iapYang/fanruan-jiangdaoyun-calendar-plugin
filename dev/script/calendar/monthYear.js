@@ -145,11 +145,9 @@ export default class {
         });
     }
     sendValue() {
-        console.log(this.selectedYear, this.selectedMonth);
-        this.vm.refresh(
-            this.selectedYear,
-            this.selectedMonth
-        );
+        const year = this.selectedYear;
+        const month = this.selectedMonth;
+        this.$container.trigger('changeData', [year, month]);
     }
     tableEventListener() {
         this.$btnOk.on('click', () => {
