@@ -9,10 +9,10 @@ export default class {
 
         this.$container = $('<div class="table-container"></div>');
         this.$dt = this.createDT();
-        new MonthDay(this.$dt, this.$input);
+        this.vmMd = new MonthDay(this.$dt, this.$input);
 
         this.$mt = this.createMT();
-        new MonthYear(this.$mt);
+        new MonthYear(this.$mt, this.vmMd);
         this.$container.css(this.calcPostion());
 
         $('body').append(this.$container);
