@@ -123,7 +123,7 @@ export default class {
             $years.removeClass('selected');
             $td.addClass('selected');
 
-            this.selectedYear = this.yearRange[this.selectedYear];
+            this.selectedYear = this.yearRange[index];
         });
 
         $btnPrevy.on('click', () => {
@@ -132,7 +132,7 @@ export default class {
             );
             this.selectedYear -= 10;
             this.clearDom();
-            this.generateCalendar();
+            this.sendValue();
         });
 
         $btnNexty.on('click', () => {
@@ -141,10 +141,11 @@ export default class {
             );
             this.selectedYear += 10;
             this.clearDom();
-            this.generateCalendar();
+            this.sendValue();
         });
     }
     sendValue() {
+        console.log(this.selectedYear, this.selectedMonth);
         this.vm.refresh(
             this.selectedYear,
             this.selectedMonth

@@ -19,22 +19,20 @@ export default class {
         basicData(this);
         this.selectedDayNumber = this.todayNumber;
 
-        this.refresh();
+        this.generateDom(this.generateCalendar(this.currentYear, this.currentMonth));
         this.tableEventListener();
     }
     refresh(year = this.currentYear, month = this.currentMonth) {
+        if (this.vm) {
+            this.vm.refresh(year, month);
+        }
+        
         this.currentYear = year;
         this.currentMonth = month;
 
         this.clearDom();
 
         this.generateDom(this.generateCalendar(year, month));
-
-        if (this.vm) {
-            this.vm.refresh(year, month);
-        }
-
-        this.tdEventListener();
     }
     prevMonth() {
         let year, month;
@@ -150,6 +148,8 @@ export default class {
 
             this.$tbody.append($tr);
         }
+
+        this.tdEventListener();
     }
     clearDom() {
         this.$tbody.empty();
