@@ -1,6 +1,9 @@
 import $ from 'jquery';
 
-const monthName = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];
+import {
+    basicData,
+    ChineseNumber,
+} from './utils.js';
 
 export default class {
     constructor($table, $input) {
@@ -13,14 +16,7 @@ export default class {
         this.$title = this.$table.find('.title');
         this.$input = $input;
 
-        this.date = new Date();
-        this.year = this.date.getFullYear();
-        // 1 ~ 12
-        this.month = this.date.getMonth() + 1;
-        this.todayNumber = this.date.getDate();
-
-        this.currentYear = this.year;
-        this.currentMonth = this.month;
+        basicData(this);
         this.selectedDayNumber = this.todayNumber;
 
         this.refresh();
@@ -33,6 +29,10 @@ export default class {
         this.clearDom();
 
         this.generateDom(this.generateCalendar(year, month));
+
+        if (this.vm) {
+            this.vm.refresh(year, month);
+        }
 
         this.tdEventListener();
     }
@@ -68,6 +68,9 @@ export default class {
 
         return d.getDay();
     }
+    setConnection(vm) {
+        this.vm = vm;
+    }
     setMonthYear(year, month) {
         if (year === this.currentYear && month === this.currentMonth) return;
 
@@ -80,7 +83,7 @@ export default class {
         const firstDay = this.getDayInOneMonth(year, month, 1);
         const lastDay = this.getDayInOneMonth(year, month, monthDays);
 
-        this.$title.text(`${monthName[month - 1]}月， ${year}`);
+        this.$title.text(`${ChineseNumber[month - 1]}月， ${year}`);
 
         const calendarArr = [];
 

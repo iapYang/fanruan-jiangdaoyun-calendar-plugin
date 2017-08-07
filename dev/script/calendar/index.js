@@ -15,6 +15,7 @@ export default class {
         this.vmMy = new MonthYear(this.$mt);
 
         this.vmMy.setConnetion(this.vmMd);
+        this.vmMd.setConnection(this.vmMy);
 
         this.$container.css(this.calcPostion());
 

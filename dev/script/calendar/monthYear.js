@@ -25,11 +25,14 @@ export default class {
     setConnetion(vm) {
         this.vm = vm;
     }
-    setYearRange() {
+    setYearRange(year = this.selectedYear, month = this.selectedMonth) {
+        this.selectedYear = year;
+        this.selectedMonth = month;
+
         const arr = [];
 
-        const firstThreeNum = parseInt(this.currentYear / 10, 10);
-        const lastNum = this.currentYear % 10;
+        const lastNum = year % 10;
+        const firstThreeNum = lastNum < 3 ? parseInt(year / 10, 10) - 1 : parseInt(year / 10, 10);
 
         const firstYear = firstThreeNum * 10 + 3;
 
@@ -40,12 +43,17 @@ export default class {
 
         return arr;
     }
+    refresh(year, month) {
+        this.clearDom();
+        this.yearRange = this.setYearRange(year, month);
+        this.generateCalendar();
+    }
     generateCalendar() {
         let calendarArr = [];
         const leftArr = ChineseNumber.map((name, index) => {
             return {
                 value: `${name}月`,
-                className: index === this.month - 1 ? ['month', 'selected'] : ['month'],
+                className: index === this.selectedMonth - 1 ? ['month', 'selected'] : ['month'],
             };
         });
         let rightArr = [{
@@ -61,7 +69,7 @@ export default class {
             ...this.yearRange.map(value => {
                 return {
                     value,
-                    className: value === this.year ? ['selected', 'year'] : ['year'],
+                    className: value === this.selectedYear ? ['selected', 'year'] : ['year'],
                 };
             }),
         ];
@@ -117,7 +125,7 @@ export default class {
         });
     }
     sendValue() {
-        this.vm.setMonthYear(
+        this.vm.refresh(
             this.yearRange[this.selectedYear],
             this.selectedMonth
         );
@@ -127,5 +135,8 @@ export default class {
             this.$table.removeClass('active');
             this.sendValue();
         });
+    }
+    clearDom() {
+        this.$tbody.empty();
     }
 }
