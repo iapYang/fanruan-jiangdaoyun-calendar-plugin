@@ -12,7 +12,10 @@ export default class {
         this.vmMd = new MonthDay(this.$dt, this.$input);
 
         this.$mt = this.createMT();
-        new MonthYear(this.$mt, this.vmMd);
+        this.vmMy = new MonthYear(this.$mt);
+
+        this.vmMy.setConnetion(this.vmMd);
+
         this.$container.css(this.calcPostion());
 
         $('body').append(this.$container);

@@ -9,7 +9,6 @@ export default class {
         this.$table = $table;
         this.$tbody = this.$table.find('tbody');
         this.$container = this.$table.parent();
-        this.vm = vm;
 
         this.$btnOk = this.$table.find('.btn.ok');
 
@@ -22,6 +21,9 @@ export default class {
         this.generateCalendar();
 
         this.tableEventListener();
+    }
+    setConnetion(vm) {
+        this.vm = vm;
     }
     setYearRange() {
         const arr = [];

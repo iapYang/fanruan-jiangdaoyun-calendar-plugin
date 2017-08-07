@@ -69,7 +69,9 @@ export default class {
         return d.getDay();
     }
     setMonthYear(year, month) {
-        this.$title.text(`${monthName[month - 1]}月， ${year}`);
+        if (year === this.currentYear && month === this.currentMonth) return;
+
+        this.refresh(year, month);
     }
     generateCalendar(year, month) {
         const monthDays = this.getDaysInOneMonth(year, month);
@@ -78,7 +80,7 @@ export default class {
         const firstDay = this.getDayInOneMonth(year, month, 1);
         const lastDay = this.getDayInOneMonth(year, month, monthDays);
 
-        this.setMonthYear(year, month);
+        this.$title.text(`${monthName[month - 1]}月， ${year}`);
 
         const calendarArr = [];
 
