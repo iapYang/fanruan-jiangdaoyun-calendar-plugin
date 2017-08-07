@@ -11,7 +11,11 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     line-height: 0;
     border: none;
+    display: none;
     overflow: hidden;
+    &.active {
+        display: block;
+    }
     table {
         position: relative;
         text-align: center;

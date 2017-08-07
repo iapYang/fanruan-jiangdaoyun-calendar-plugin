@@ -7,6 +7,7 @@ export default class {
     constructor($aim) {
         this.$aim = $aim;
         this.$input = this.$aim.find('input');
+        this.$logo = this.$aim.find('.logo');
 
         this.$container = $('<div class="table-container"></div>');
         this.$dt = this.createDT();
@@ -23,6 +24,14 @@ export default class {
         this.$container.css(this.calcPostion());
 
         $('body').append(this.$container);
+
+        this.$logo.on('click', () => {
+            if (this.$container.hasClass('active')) {
+                this.$container.removeClass('active');
+            } else {
+                this.$container.addClass('active');
+            }
+        });
     }
     calcPostion() {
         const top = this.$aim.position().top + this.$aim.height();

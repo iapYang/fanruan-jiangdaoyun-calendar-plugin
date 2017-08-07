@@ -7,9 +7,9 @@ import Calendar from './calendar';
 
 const $logo = $('.logo');
 const $input = $('input');
-const $container = $('.container');
+const $all = $('.all');
 
-new Calendar($container);
+new Calendar($all);
 
 // const calendar = new Calendar($table, $input);
 
