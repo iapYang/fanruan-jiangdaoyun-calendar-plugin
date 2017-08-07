@@ -47,10 +47,23 @@ export default class {
 
         this.$up.on('click', () => {
             console.log('up');
+            const $selected = this.$thbody.find('.selected');
+            const ifHour = $selected.hasClass('hour');
+            let val = parseInt($selected.text(), 10) + 1;
+            const limit = ifHour ? 24 : 60;
+            val = val >= limit ? 0 : val;
+            $selected.text(this.formatValue(val));
         });
 
         this.$down.on('click', () => {
             console.log('down');
+
+            const $selected = this.$thbody.find('.selected');
+            const ifHour = $selected.hasClass('hour');
+            let val = parseInt($selected.text(), 10) - 1;
+            const limit = ifHour ? 23 : 59;
+            val = val <= -1 ? limit : val;
+            $selected.text(this.formatValue(val));
         });
     }
 }
