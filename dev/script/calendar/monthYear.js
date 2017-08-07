@@ -10,9 +10,9 @@ export default class {
         this.$tbody = this.$table.find('tbody');
         this.$container = this.$table.parent();
 
-        this.$btnOk = this.$table.find('.btn.ok');
-
         basicData(this);
+
+        this.$btnOk = this.$table.find('.btn.ok');
 
         this.selectedYear = this.year;
         this.selectedMonth = this.month;
@@ -105,6 +105,8 @@ export default class {
     tdEventListener() {
         const $months = this.$table.find('td.month');
         const $years = this.$table.find('td.year');
+        const $btnPrevy = this.$table.find('.prevy');
+        const $btnNexty = this.$table.find('.nexty');
 
         $months.on('click', e => {
             const $td = $(e.currentTarget);
@@ -121,12 +123,30 @@ export default class {
             $years.removeClass('selected');
             $td.addClass('selected');
 
-            this.selectedYear = index;
+            this.selectedYear = this.yearRange[this.selectedYear];
+        });
+
+        $btnPrevy.on('click', () => {
+            this.yearRange = this.yearRange.map(value =>
+                value - 10
+            );
+            this.selectedYear -= 10;
+            this.clearDom();
+            this.generateCalendar();
+        });
+
+        $btnNexty.on('click', () => {
+            this.yearRange = this.yearRange.map(value =>
+                value + 10
+            );
+            this.selectedYear += 10;
+            this.clearDom();
+            this.generateCalendar();
         });
     }
     sendValue() {
         this.vm.refresh(
-            this.yearRange[this.selectedYear],
+            this.selectedYear,
             this.selectedMonth
         );
     }
