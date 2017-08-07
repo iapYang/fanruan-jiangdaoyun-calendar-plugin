@@ -14,6 +14,7 @@ export default class {
         this.$nextm = $table.find('.nextm');
         this.$tbody = this.$table.find('tbody');
         this.$title = this.$table.find('.title');
+        this.$btnToday = this.$table.find('.btn.today');
         this.$input = $input;
 
         basicData(this);
@@ -33,6 +34,8 @@ export default class {
         this.clearDom();
 
         this.generateDom(this.generateCalendar(year, month));
+
+        this.inputValChange();
     }
     prevMonth() {
         let year, month;
@@ -163,7 +166,7 @@ export default class {
             $tds.removeClass('selected');
             $td.addClass('selected');
 
-            this.$input.val(this.getValue());
+            this.inputValChange();
         });
     }
     tableEventListener() {
@@ -177,6 +180,18 @@ export default class {
             const $mt = this.$table.parent().find('.mt');
             $mt.addClass('active');
         });
+        this.$btnToday.on('click', () => {
+            this.currentYear = this.year;
+            this.currentMonth = this.month;
+            this.selectedDayNumber = this.todayNumber;
+
+            this.refresh();
+
+            this.inputValChange();
+        });
+    }
+    inputValChange() {
+        this.$input.val(this.getValue());
     }
     getValue() {
         const month = this.currentMonth < 10 ? `0${this.currentMonth}` : this.currentMonth;
