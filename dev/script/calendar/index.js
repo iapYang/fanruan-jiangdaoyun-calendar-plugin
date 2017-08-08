@@ -65,6 +65,20 @@ export default class {
         };
     }
     createDT() {
+        const ms = this.createModel[this.type].ms ? `
+            <tbody class="time">
+                <tr>
+                    <td>时间</td>
+                    <td colspan="2" class="hour display"></td>
+                    <td class="minute display"></td>
+                    <td colspan="2" class="second display selected"></td>
+                    <td class="controller">
+                        <div class="up-btn"><span>&lt;</span></div>
+                        <div class="down-btn"><span>&gt;</span></div>
+                    </td>                    
+                </tr>
+            </tbody>
+        ` : '';
         const $dt = $(`
         <table cellspacing="2px" cellpadding="0" class="dt" style="display: table;">
             <thead>
@@ -88,18 +102,7 @@ export default class {
                 </tr>
             </thead>
             <tbody onselectstart="return false" class="calendar"></tbody>
-            <tbody class="time">
-                <tr>
-                    <td>时间</td>
-                    <td colspan="2" class="hour display"></td>
-                    <td class="minute display"></td>
-                    <td colspan="2" class="second display selected"></td>
-                    <td class="controller">
-                        <div class="up-btn"><span>&lt;</span></div>
-                        <div class="down-btn"><span>&gt;</span></div>
-                    </td>                    
-                </tr>
-            </tbody>
+            ${ms}
             <tfoot>
                 <tr>
                     <td class="split" colspan="7"></td>
@@ -131,6 +134,9 @@ export default class {
 
         return $MT;
     }
+    setInputVal(value) {
+        this.$input.val(value);
+    }
     addEventListener() {
         this.$logo.on('click', () => {
             if (this.$container.hasClass('active')) {
@@ -148,8 +154,11 @@ export default class {
                 this.vmMy.refresh(year, month);
             }
             if (this.type === 0) {
-                console.log(233);
-                this.$input.val(`${year}-${formatValue(month)}`);
+                this.setInputVal(`${year}-${formatValue(month)}`);
+            } else if (this.type === 3) {
+                console.log(56);
+            } else {
+                this.setInputVal(this.vmMd.getValue());
             }
         });
     }

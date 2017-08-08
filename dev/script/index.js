@@ -9,9 +9,11 @@ const $logo = $('.logo');
 const $input = $('input');
 const $all = $('.all');
 const $monthYear = $('.monthYear');
+const $monthYearDay = $('.monthYearDay');
 
 new Calendar($all);
 new Calendar($monthYear, 0);
+new Calendar($monthYearDay, 1);
 
 // const calendar = new Calendar($table, $input);
 

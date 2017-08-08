@@ -3,6 +3,7 @@ import $ from 'jquery';
 import {
     basicData,
     ChineseNumber,
+    formatValue,
 } from './utils.js';
 
 export default class {
@@ -31,8 +32,6 @@ export default class {
         this.clearDom();
 
         this.generateDom(this.generateCalendar(year, month));
-
-        this.inputValChange();
     }
     prevMonth() {
         let year, month;
@@ -160,7 +159,7 @@ export default class {
             $tds.removeClass('selected');
             $td.addClass('selected');
 
-            this.inputValChange();
+            this.sendData();
         });
     }
     tableEventListener() {
@@ -181,8 +180,6 @@ export default class {
 
             // this.refresh();
             this.sendData();
-
-            this.inputValChange();
         });
     }
     inputValChange() {
@@ -192,10 +189,6 @@ export default class {
         this.$container.trigger('changeData', [year, month]);
     }
     getValue() {
-        const month = this.currentMonth < 10 ? `0${this.currentMonth}` : this.currentMonth;
-
-        const dayNumber = this.selectedDayNumber < 10 ? `0${this.selectedDayNumber}` : this.selectedDayNumber;
-
-        return `${this.currentYear}-${month}-${dayNumber}`;
+        return `${this.currentYear}-${formatValue(this.currentMonth)}-${formatValue(this.selectedDayNumber)}`;
     }
 }
