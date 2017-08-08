@@ -147,7 +147,7 @@ export default class {
     getValue() {
         switch (this.type) {
             case 0:
-                return this.vmMd.getValue();
+                return this.vmMy.getValue();
             case 1:
                 return this.vmMd.getValue();
             case 2:
