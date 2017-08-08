@@ -45,6 +45,10 @@ export default class {
         }
 
         if (this.createModel[this.type].ms) {
+            if (!this.$dt) {
+                this.$dt = this.createDT();
+                this.$dt.addClass('time-table');
+            }
             this.vmMs = new MinuteSecond(this.$dt);
         }
 
@@ -65,22 +69,7 @@ export default class {
         };
     }
     createDT() {
-        const ms = this.createModel[this.type].ms ? `
-            <tbody class="time">
-                <tr>
-                    <td>时间</td>
-                    <td colspan="2" class="hour display"></td>
-                    <td class="minute display"></td>
-                    <td colspan="2" class="second display selected"></td>
-                    <td class="controller">
-                        <div class="up-btn"><span>&lt;</span></div>
-                        <div class="down-btn"><span>&gt;</span></div>
-                    </td>                    
-                </tr>
-            </tbody>
-        ` : '';
-        const $dt = $(`
-        <table cellspacing="2px" cellpadding="0" class="dt" style="display: table;">
+        const dt = this.createModel[this.type].dt ? `
             <thead>
                 <tr class="mainhead">
                     <td class="btn prevm" colspan="1">
@@ -102,6 +91,24 @@ export default class {
                 </tr>
             </thead>
             <tbody onselectstart="return false" class="calendar"></tbody>
+        ` : '';
+        const ms = this.createModel[this.type].ms ? `
+            <tbody class="time">
+                <tr>
+                    <td>时间</td>
+                    <td colspan="2" class="hour display"></td>
+                    <td class="minute display"></td>
+                    <td colspan="2" class="second display selected"></td>
+                    <td class="controller">
+                        <div class="up-btn"><span>&lt;</span></div>
+                        <div class="down-btn"><span>&gt;</span></div>
+                    </td>                    
+                </tr>
+            </tbody>
+        ` : '';
+        const $dt = $(`
+        <table cellspacing="2px" cellpadding="0" class="dt" style="display: table;">
+            ${dt}
             ${ms}
             <tfoot>
                 <tr>
@@ -138,14 +145,17 @@ export default class {
         this.$input.val(value);
     }
     getValue() {
-        if (this.type === 0) {
-            
-        } else if (this.type === 1) {
-            this.setInputVal(this.vmMd.getValue());
-        } else if (this.type === 2) {
-            console.log(56);
-        } else if (this.type === 3) {
-            console.log(56);
+        switch (this.type) {
+            case 0:
+                return this.vmMd.getValue();
+            case 1:
+                return this.vmMd.getValue();
+            case 2:
+                return `${this.vmMd.getValue()} ${this.vmMs.getValue()}`;
+            case 3:
+                return this.vmMs.getValue();
+            default:
+                return '';
         }
     }
     addEventListener() {
@@ -164,15 +174,8 @@ export default class {
             if (this.vmMy) {
                 this.vmMy.refresh(year, month);
             }
-            if (this.type === 0) {
-                this.setInputVal(this.vmMy.getValue());
-            } else if (this.type === 1) {
-                this.setInputVal(this.vmMd.getValue());
-            } else if (this.type === 2) {
-                this.setInputVal(`${this.vmMd.getValue()} ${this.vmMs.getValue()}`);
-            } else if (this.type === 3) {
-                console.log(56);
-            }
+            
+            this.setInputVal(this.getValue());
         });
 
         this.$container.on('clearData', () => {

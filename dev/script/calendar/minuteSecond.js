@@ -9,6 +9,9 @@ export default class {
     constructor($table) {
         this.$table = $table;
         this.$thbody = $table.find('.time');
+        this.$container = $table.parent();
+
+        this.ifSingleTable = $table.hasClass('time-table');
 
         basicData(this);
 
@@ -23,6 +26,9 @@ export default class {
 
         this.$up = this.$table.find('.up-btn');
         this.$down = this.$table.find('.down-btn');
+        this.$btnClear = this.$table.find('.btn.clear');
+        this.$btnToday = this.$table.find('.btn.today');
+        this.$btnOk = this.$table.find('.btn.ok');
         this.setTime(hour, minute, second);
 
         this.tableEventListener();
@@ -62,6 +68,25 @@ export default class {
             val = val <= -1 ? limit : val;
             $selected.text(formatValue(val));
         });
+
+        if (this.ifSingleTable) {
+            this.$btnClear.on('click', () => {
+                this.$container.trigger('clearData');
+                this.$container.trigger('close');
+            });
+
+            this.$btnToday.on('click', () => {
+                const now = new Date();
+                this.setTime(now.getHours(), now.getMinutes(), now.getSeconds());
+                this.$container.trigger('changeData');
+                this.$container.trigger('close');
+            });
+
+            this.$btnOk.on('click', () => {
+                this.$container.trigger('changeData');
+                this.$container.trigger('close');
+            });
+        }
     }
 }
 
