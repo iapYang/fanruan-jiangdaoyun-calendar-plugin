@@ -160,6 +160,13 @@ export default class {
             } else {
                 this.setInputVal(this.vmMd.getValue());
             }
+
+            this.$logo.trigger('click');
+        });
+
+        this.$container.on('clearData', () => {
+            this.setInputVal('');
+            this.$logo.trigger('click');
         });
     }
 }

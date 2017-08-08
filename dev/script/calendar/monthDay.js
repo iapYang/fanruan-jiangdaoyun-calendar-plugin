@@ -17,6 +17,8 @@ export default class {
         this.$tbody = this.$table.find('tbody.calendar');
         this.$title = this.$table.find('.title');
         this.$btnToday = this.$table.find('.btn.today');
+        this.$btnOk = this.$table.find('.btn.ok');
+        this.$btnClear = this.$table.find('.btn.clear');
 
         basicData(this);
         this.selectedDayNumber = this.todayNumber;
@@ -178,6 +180,13 @@ export default class {
             this.selectedDayNumber = this.todayNumber;
 
             // this.refresh();
+            this.sendData();
+        });
+        this.$btnClear.on('click', () => {
+            this.$table.find('td.btn.day').removeClass('selected');
+            this.$container.trigger('clearData');
+        });
+        this.$btnOk.on('click', () => {
             this.sendData();
         });
     }
