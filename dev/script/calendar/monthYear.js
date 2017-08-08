@@ -2,6 +2,7 @@ import $ from 'jquery';
 import {
     ChineseNumber,
     basicData,
+    formatValue,
 } from './utils';
 
 export default class {
@@ -148,6 +149,9 @@ export default class {
             this.sendValue();
         });
     }
+    getValue() {
+        return `${this.selectedYear}-${formatValue(this.selectedMonth)}`;
+    }
     sendValue() {
         const year = this.selectedYear;
         const month = this.selectedMonth;
@@ -157,6 +161,9 @@ export default class {
         this.$btnOk.on('click', () => {
             this.$table.removeClass('active');
             this.sendValue();
+            if (this.$table.hasClass('inactive')) {
+                this.$container.trigger('close');
+            }
         });
     }
     clearDom() {

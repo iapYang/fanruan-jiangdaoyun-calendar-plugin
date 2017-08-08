@@ -2,6 +2,7 @@ import $ from 'jquery';
 import {
     basicData,
     ChineseNumber,
+    formatValue,
 } from './utils.js';
 
 export default class {
@@ -27,16 +28,12 @@ export default class {
         this.tableEventListener();
     }
     setTime(h, m, s) {
-        this.$hour.text(this.formatValue(h));
-        this.$minute.text(this.formatValue(m));
-        this.$second.text(this.formatValue(s));
+        this.$hour.text(formatValue(h));
+        this.$minute.text(formatValue(m));
+        this.$second.text(formatValue(s));
     }
-    formatValue(value) {
-        if (value < 10) {
-            return `0${value}`;
-        }
-
-        return `${value}`;
+    getValue() {
+        return `${this.$hour.text()}:${this.$minute.text()}:${this.$second.text()}`;
     }
     tableEventListener() {
         this.$display.on('click', e => {
@@ -52,7 +49,7 @@ export default class {
             let val = parseInt($selected.text(), 10) + 1;
             const limit = ifHour ? 24 : 60;
             val = val >= limit ? 0 : val;
-            $selected.text(this.formatValue(val));
+            $selected.text(formatValue(val));
         });
 
         this.$down.on('click', () => {
@@ -63,7 +60,7 @@ export default class {
             let val = parseInt($selected.text(), 10) - 1;
             const limit = ifHour ? 23 : 59;
             val = val <= -1 ? limit : val;
-            $selected.text(this.formatValue(val));
+            $selected.text(formatValue(val));
         });
     }
 }

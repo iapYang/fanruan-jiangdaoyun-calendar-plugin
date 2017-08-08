@@ -33,7 +33,7 @@ export default class {
         }];
 
         this.$container = $('<div class="table-container"></div>');
-        
+
         if (this.createModel[this.type].dt) {
             this.$dt = this.createDT();
             this.vmMd = new MonthDay(this.$dt);
@@ -137,6 +137,17 @@ export default class {
     setInputVal(value) {
         this.$input.val(value);
     }
+    getValue() {
+        if (this.type === 0) {
+            
+        } else if (this.type === 1) {
+            this.setInputVal(this.vmMd.getValue());
+        } else if (this.type === 2) {
+            console.log(56);
+        } else if (this.type === 3) {
+            console.log(56);
+        }
+    }
     addEventListener() {
         this.$logo.on('click', () => {
             if (this.$container.hasClass('active')) {
@@ -154,19 +165,23 @@ export default class {
                 this.vmMy.refresh(year, month);
             }
             if (this.type === 0) {
-                this.setInputVal(`${year}-${formatValue(month)}`);
+                this.setInputVal(this.vmMy.getValue());
+            } else if (this.type === 1) {
+                this.setInputVal(this.vmMd.getValue());
+            } else if (this.type === 2) {
+                this.setInputVal(`${this.vmMd.getValue()} ${this.vmMs.getValue()}`);
             } else if (this.type === 3) {
                 console.log(56);
-            } else {
-                this.setInputVal(this.vmMd.getValue());
             }
-
-            this.$logo.trigger('click');
         });
 
         this.$container.on('clearData', () => {
             this.setInputVal('');
             this.$logo.trigger('click');
+        });
+
+        this.$container.on('close', () => {
+            this.$container.removeClass('active');
         });
     }
 }

@@ -192,6 +192,7 @@ export default class {
     }
     sendData(year = this.currentYear, month = this.currentMonth) {
         this.$container.trigger('changeData', [year, month]);
+        this.$container.trigger('close');
     }
     getValue() {
         return `${this.currentYear}-${formatValue(this.currentMonth)}-${formatValue(this.selectedDayNumber)}`;
