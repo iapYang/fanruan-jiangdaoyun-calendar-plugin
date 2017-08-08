@@ -110,7 +110,9 @@ export default class {
 
         $months.on('click', e => {
             const $td = $(e.currentTarget);
-            const index = $td.index('td.month');
+            const $month = this.$table.find('td.month');
+            const index = $month.index($td);
+
             $months.removeClass('selected');
             $td.addClass('selected');
 
@@ -119,7 +121,9 @@ export default class {
 
         $years.on('click', e => {
             const $td = $(e.currentTarget);
-            const index = $td.index('td.year');
+            const $year = this.$table.find('td.year');
+
+            const index = $years.index($td);
             $years.removeClass('selected');
             $td.addClass('selected');
 

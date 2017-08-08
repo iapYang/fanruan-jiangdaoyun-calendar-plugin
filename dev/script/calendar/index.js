@@ -6,20 +6,44 @@ import MinuteSecond from './minuteSecond';
 export default class {
     constructor($aim, type = 2) {
         this.$aim = $aim;
+        this.type = type;
         this.$input = this.$aim.find('input');
         this.$logo = this.$aim.find('.logo');
 
+        this.createModel = [{
+            dt: false,
+            mt: true,
+            ms: false,
+        }, {
+            dt: true,
+            mt: true,
+            ms: false,
+        }, {
+            dt: true,
+            mt: true,
+            ms: true,
+        }, {
+            dt: false,
+            mt: false,
+            ms: true,
+        }];
+
         this.$container = $('<div class="table-container"></div>');
-        this.$dt = this.createDT();
-        this.vmMd = new MonthDay(this.$dt, this.$input);
+        console.log(this.createModel[this.type]);
+        
+        if (this.createModel[this.type].dt) {
+            this.$dt = this.createDT();
+            this.vmMd = new MonthDay(this.$dt, this.$input);
+        }
 
-        this.$mt = this.createMT();
-        this.vmMy = new MonthYear(this.$mt);
+        if (this.createModel[this.type].mt) {
+            this.$mt = this.createMT();
+            this.vmMy = new MonthYear(this.$mt);
+        }
 
-        this.vmMy.setConnetion(this.vmMd);
-        this.vmMd.setConnection(this.vmMy);
-
-        new MinuteSecond(this.$dt);
+        if (this.createModel[this.type].ms) {
+            this.vmMs = new MinuteSecond(this.$dt);
+        }
 
         this.$container.css(this.calcPostion());
 
@@ -89,8 +113,9 @@ export default class {
         return $dt;
     }
     createMT() {
+        const activeClassName = this.createModel[this.type].dt ? '' : 'inactive';
         const $MT = $(`
-        <table cellspacing="2px" cellpadding="0" class="mt" style="position: absolute; top: 0px; z-index: 8061; display: table;">
+        <table cellspacing="2px" cellpadding="0" class="mt ${activeClassName}" style="top: 0px; z-index: 8061; display: table;">
             <tbody></tbody>
             <tfoot>
                 <tr>
@@ -113,6 +138,7 @@ export default class {
         });
 
         this.$container.on('changeData', (e, year, month) => {
+            console.log(year, month);
             if (this.vmMd) {
                 this.vmMd.refresh(year, month);
             }

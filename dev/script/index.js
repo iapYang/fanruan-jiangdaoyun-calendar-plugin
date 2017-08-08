@@ -11,9 +11,7 @@ const $all = $('.all');
 const $monthYear = $('.monthYear');
 
 new Calendar($all);
-new Calendar($monthYear, {
-    type: 0,
-});
+new Calendar($monthYear, 0);
 
 // const calendar = new Calendar($table, $input);
 

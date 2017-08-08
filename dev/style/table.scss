@@ -118,6 +118,14 @@
         &.active {
             transform: none;
         }
+        &.inactive {
+            position: relative; 
+            top: 0;
+            left: 0;
+            right: auto;
+            bottom: auto;
+            transform: none;
+        }
         tbody td {
             width: 58px;
             height: 38px;
