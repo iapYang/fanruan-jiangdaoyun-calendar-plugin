@@ -3,6 +3,10 @@ import MonthDay from './monthDay';
 import MonthYear from './monthYear';
 import MinuteSecond from './minuteSecond';
 
+import {
+    formatValue,
+} from './utils.js';
+
 export default class {
     constructor($aim, type = 2) {
         this.$aim = $aim;
@@ -29,7 +33,6 @@ export default class {
         }];
 
         this.$container = $('<div class="table-container"></div>');
-        console.log(this.createModel[this.type]);
         
         if (this.createModel[this.type].dt) {
             this.$dt = this.createDT();
@@ -138,12 +141,15 @@ export default class {
         });
 
         this.$container.on('changeData', (e, year, month) => {
-            console.log(year, month);
             if (this.vmMd) {
                 this.vmMd.refresh(year, month);
             }
             if (this.vmMy) {
                 this.vmMy.refresh(year, month);
+            }
+            if (this.type === 0) {
+                console.log(233);
+                this.$input.val(`${year}-${formatValue(month)}`);
             }
         });
     }

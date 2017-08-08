@@ -10,4 +10,16 @@ module.exports = {
         vm.currentYear = vm.year;
         vm.currentMonth = vm.month;
     },
+    formatValue(val, number = 2) {
+        const length = val.toString().length;
+        const needZero = number - length;
+
+        let formatted = `${val}`;
+
+        for (let i = 0; i < needZero; i++) {
+            formatted = `0${formatted}`;
+        }
+
+        return formatted;
+    },
 };
