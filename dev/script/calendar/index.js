@@ -128,7 +128,7 @@ export default class {
     createMT() {
         const activeClassName = this.createModel[this.type].dt ? '' : 'inactive';
         const $MT = $(`
-        <table cellspacing="2px" cellpadding="0" class="mt ${activeClassName}" style="top: 0px; z-index: 8061; display: table;">
+        <table cellspacing="2px" cellpadding="0" class="mt ${activeClassName}" style="top: 0px; z-index: 8061; display: block;">
             <tbody></tbody>
             <tfoot>
                 <tr>
