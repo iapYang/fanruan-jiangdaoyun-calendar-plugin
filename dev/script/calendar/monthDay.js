@@ -7,7 +7,7 @@ import {
 } from './utils.js';
 
 export default class {
-    constructor($table, $input) {
+    constructor($table) {
         console.log('now it is built.');
 
         this.$table = $table;
@@ -17,7 +17,6 @@ export default class {
         this.$tbody = this.$table.find('tbody.calendar');
         this.$title = this.$table.find('.title');
         this.$btnToday = this.$table.find('.btn.today');
-        this.$input = $input;
 
         basicData(this);
         this.selectedDayNumber = this.todayNumber;
@@ -181,9 +180,6 @@ export default class {
             // this.refresh();
             this.sendData();
         });
-    }
-    inputValChange() {
-        this.$input.val(this.getValue());
     }
     sendData(year = this.currentYear, month = this.currentMonth) {
         this.$container.trigger('changeData', [year, month]);

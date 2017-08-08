@@ -36,7 +36,7 @@ export default class {
         
         if (this.createModel[this.type].dt) {
             this.$dt = this.createDT();
-            this.vmMd = new MonthDay(this.$dt, this.$input);
+            this.vmMd = new MonthDay(this.$dt);
         }
 
         if (this.createModel[this.type].mt) {
