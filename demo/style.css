@@ -1,0 +1,14 @@
+input {
+    width: 200px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.logo {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    vertical-align: middle;
+    cursor: pointer;
+}

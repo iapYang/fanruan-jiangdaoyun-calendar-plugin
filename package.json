@@ -1,28 +1,29 @@
 {
-  "name": "jiangdaoyun-calendar",
+  "name": "jiangdaoyun-calendar-plugin",
   "version": "1.0.0",
   "description": "jiandaoyun task",
-  "main": "index.js",
+  "main": "bundle/index.js",
   "scripts": {
     "cli": "iapvt cli -r -s",
     "start": "iapvt dev",
-    "build": "iapvt build"
+    "build": "iapvt build",
+    "bundle": "iapvt bundle"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iapYang/jiangdaoyun-calendar.git"
+    "url": "git+https://github.com/iapYang/jiangdaoyun-calendar-plugin.git"
   },
-  "author": "",
+  "author": "iapyang",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iapYang/jiangdaoyun-calendar/issues"
+    "url": "https://github.com/iapYang/jiangdaoyun-calendar-plugin/issues"
   },
-  "homepage": "https://github.com/iapYang/jiangdaoyun-calendar#readme",
+  "homepage": "https://github.com/iapYang/jiangdaoyun-calendar-plugin#readme",
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^4.3.0",
     "eslint-plugin-html": "^3.1.1",
-    "iapyang-vue-template": "^0.5.2",
+    "iapyang-vue-template": "^0.5.4",
     "jquery": "^3.2.1"
   }
 }

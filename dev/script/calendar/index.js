@@ -7,9 +7,11 @@ import {
     formatValue,
 } from './utils.js';
 
+import '../../style/table.scss';
+
 export default class {
-    constructor($aim, type = 2) {
-        this.$aim = $aim;
+    constructor(aim, type = 2) {
+        this.$aim = $(aim);
         this.type = type;
         this.$input = this.$aim.find('input');
         this.$logo = this.$aim.find('.logo');
