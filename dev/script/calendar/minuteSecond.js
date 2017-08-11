@@ -38,6 +38,33 @@ export default class {
         this.$minute.text(formatValue(m));
         this.$second.text(formatValue(s));
     }
+    setValue(value) {
+        const arr = value.split(':');
+        const h = parseInt(arr[0], 10);
+        const m = parseInt(arr[1], 10);
+        const s = parseInt(arr[2], 10);
+
+        if (!(h >= 0 && h < 24)) {
+            console.log('input data error');
+
+            return;
+        }
+
+        if (!(m >= 0 && m < 60)) {
+            console.log('input data error');
+
+            return;
+        }
+
+        if (!(s >= 0 && s < 60)) {
+            console.log('input data error');
+
+            return;
+        }
+
+        this.setTime(arr[0], arr[1], arr[2]);
+        this.$btnOk.trigger('click');
+    }
     getValue() {
         return `${this.$hour.text()}:${this.$minute.text()}:${this.$second.text()}`;
     }

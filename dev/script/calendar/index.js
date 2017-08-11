@@ -146,6 +146,10 @@ export default class {
     setInputVal(value) {
         this.$input.val(value);
     }
+    setValue(value) {
+        console.log(this.type);
+        this.vmMs.setValue(value);
+    }
     getValue() {
         switch (this.type) {
             case 0:
