@@ -190,6 +190,24 @@ export default class {
             this.sendData();
         });
     }
+    setValue(value) {
+        const arr = value.split('-');
+        const year = parseInt(arr[0], 10);
+        const month = parseInt(arr[1], 10);
+        const day = parseInt(arr[2], 10);
+
+        if (!(month <= 12 && month > 0)) {
+            console.log('input error');
+
+            return;
+        }
+
+        this.selectedDayNumber = day;
+
+        this.selectedYear = year;
+        this.selectedMonth = month;
+        this.sendData(year, month, day);
+    }
     sendData(year = this.currentYear, month = this.currentMonth) {
         this.$container.trigger('changeData', [year, month]);
         this.$container.trigger('close');

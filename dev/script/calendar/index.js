@@ -152,7 +152,8 @@ export default class {
                 this.vmMy.setValue(value);
                 break;
             case 1:
-                return '';
+                this.vmMd.setValue(value);
+                break;
             case 2:
                 return '';
             case 3:
