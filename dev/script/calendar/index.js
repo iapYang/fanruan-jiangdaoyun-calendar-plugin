@@ -147,8 +147,20 @@ export default class {
         this.$input.val(value);
     }
     setValue(value) {
-        console.log(this.type);
-        this.vmMs.setValue(value);
+        switch (this.type) {
+            case 0:
+                this.vmMy.setValue(value);
+                break;
+            case 1:
+                return '';
+            case 2:
+                return '';
+            case 3:
+                this.vmMs.setValue(value);
+                break;
+            default:
+                break;
+        }
     }
     getValue() {
         switch (this.type) {

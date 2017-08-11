@@ -152,6 +152,21 @@ export default class {
     getValue() {
         return `${this.selectedYear}-${formatValue(this.selectedMonth)}`;
     }
+    setValue(value) {
+        const arr = value.split('-');
+        const year = parseInt(arr[0], 10);
+        const month = parseInt(arr[1], 10);
+
+        if (!(month <= 12 && month > 0)) {
+            console.log('input error');
+
+            return;
+        }
+
+        this.selectedYear = year;
+        this.selectedMonth = month;
+        this.sendValue();
+    }
     sendValue() {
         const year = this.selectedYear;
         const month = this.selectedMonth;
