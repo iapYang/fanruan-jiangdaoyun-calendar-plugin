@@ -155,7 +155,9 @@ export default class {
                 this.vmMd.setValue(value);
                 break;
             case 2:
-                return '';
+                this.vmMs.setValue(value.split(' ')[1]);
+                this.vmMd.setValue(value.split(' ')[0]);
+                break;
             case 3:
                 this.vmMs.setValue(value);
                 break;

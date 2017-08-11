@@ -9,4 +9,5 @@ new Calendar('.minuteSecond', 3);
 
 new Calendar('.mYSet', 0).setValue('2009-08');
 new Calendar('.mYDSet', 1).setValue('2000-12-31');
+new Calendar('.allSet').setValue('2000-09-09 13:00:00');
 new Calendar('.timeSet', 3).setValue('12:00:00');
