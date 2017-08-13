@@ -7,7 +7,8 @@
     "cli": "iapvt cli -r -s",
     "start": "iapvt dev",
     "build": "iapvt build",
-    "bundle": "iapvt bundle"
+    "bundle": "iapvt bundle",
+    "gh": "iapvt gh"
   },
   "repository": {
     "type": "git",
